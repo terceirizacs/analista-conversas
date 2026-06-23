@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.netrc)",
+      "Read(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Read(~/.kube/**)",
+      "Read(~/.docker/**)",
+      "Read(~/Library/Keychains/**)",
+      "Read(//Users/tiagogladstone/Desktop/Drive TiagoGladstone/[00] Projetos/[12] Revalida Resolve/**)",
+      "Read(//Users/tiagogladstone/Desktop/Drive TiagoGladstone/[00] Projetos/[000] Projetos Pessoais/**)",
+      "Read(//Users/tiagogladstone/Desktop/Drive TiagoGladstone/[01] Pedagogico/**)",
+      "Read(./.env)",
+      "Read(./.env.local)",
+      "Read(./.env.*.local)",
+      "Read(./.git/config)",
+      "Bash(security find-generic-password *)",
+      "Bash(security find-internet-password *)",
+      "Bash(security unlock-keychain *)",
+      "Bash(gh auth token)",
+      "Bash(gh auth status --show-token *)",
+      "Bash(printenv *TOKEN*)",
+      "Bash(printenv *KEY*)",
+      "Bash(printenv *SECRET*)",
+      "Bash(printenv *PASSWORD*)",
+      "Bash(env)",
+      "Bash(cat ~/.ssh/*)",
+      "Bash(cat ~/.aws/*)",
+      "Bash(cat ~/.config/gh/*)",
+      "Bash(cat .env)",
+      "Bash(cat .env.local)",
+      "Bash(cat .git/config)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

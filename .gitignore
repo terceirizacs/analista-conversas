@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Claude Code — pessoal/local (settings.json e hooks vão pro git; resto não)
+.claude/settings.local.json
+.claude/agent-memory-local/
+CLAUDE.local.md
+
+# Segredos (guarda-corpo: nunca commitar credenciais do conector Supabase)
+.env*
+!.env.example
+*.pem
+secrets.*
