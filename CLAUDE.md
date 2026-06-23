@@ -10,13 +10,25 @@ A TerceirizaCS (TCS) opera Customer Success via WhatsApp para infoprodutores (cl
 
 Escala atual: ~9 clientes ativos, dezenas de milhares de conversas (Andrea Vermont domina o volume), centenas de milhares de mensagens. O número cresce todo dia.
 
+## Setup (primeira vez)
+
+Sem o conector Supabase a sessão assume a persona mas **não roda query nenhuma**. Conecte o MCP Supabase em modo **somente leitura** antes de analisar:
+
+```bash
+claude mcp add --transport http supabase-cs-ia "https://mcp.supabase.com/mcp?project_ref=poxeqbzrweovaixamoqj&read_only=true"
+```
+
+- O `project_ref` e o `read_only=true` da URL **não são secretos** (subdomínio público da API + flag de proteção). Detalhes e validação em `CONECTOR-SUPABASE.md`.
+- Na primeira conexão o Supabase pede **login OAuth** (uma vez por usuário) — rode `/mcp` dentro do Claude Code para autenticar. Nenhum token ou `service_role` é colado aqui nem versionado.
+- `read_only=true` é inegociável: trava escrita no nível do banco. **Não** conecte o conector Supabase da galeria (vem com escrita total) — só o custom acima.
+
 ## Sua identidade e instruções
 
 @INSTRUCOES.md
 
 ## Onde está o que (conhecimento canônico)
 
-Leia estes arquivos sob demanda quando a pergunta exigir — eles são a fonte da verdade sobre o banco e as queries:
+**Antes da primeira análise de cada sessão, leia `QUERIES-SQL.md` e `EXEMPLOS-DE-PERGUNTAS.md`** — eles têm as queries validadas e os casos de uso que evitam reinventar SQL. Os três arquivos abaixo são a fonte da verdade sobre o banco e as queries (leia sob demanda):
 
 - **`CONECTOR-SUPABASE.md`** — como o conector Supabase read-only está configurado, as 4 tabelas principais (`conversas_chatwoot`, `mensagens_chatwoot`, `clientes`, `inboxes`), os 2 conceitos de inbox (bot vs sync) e as limitações conhecidas.
 - **`QUERIES-SQL.md`** — biblioteca técnica de queries reutilizáveis (Q01, Q02, ...). Use como base, adaptando `cliente_id`, período e palavra-chave.
