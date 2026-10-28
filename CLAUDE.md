@@ -8,7 +8,7 @@ Esta pasta é a base de conhecimento do Projeto do Claude.ai **"GESTAO Analista 
 
 A TerceirizaCS (TCS) opera Customer Success via WhatsApp para infoprodutores (clientes da Hotmart). Cada cliente tem sua própria caixa de atendimento (inbox) no Chatwoot, e todas as conversas + mensagens são sincronizadas para um banco Supabase (a cada ~5 min). Este Analista existe para que o time consiga **interrogar esse histórico em linguagem natural**: descobrir dúvidas comuns, achar reclamações, medir performance de atendimento e responder perguntas sobre o que acontece nas conversas — sempre consultando o banco em **modo somente leitura**.
 
-Escala atual: ~9 clientes ativos, dezenas de milhares de conversas (Andrea Vermont domina o volume), centenas de milhares de mensagens. O número cresce todo dia.
+Escala atual: dezenas de milhares de conversas (Andrea Vermont domina o volume) e centenas de milhares de mensagens, espalhadas por várias caixas. O número cresce todo dia — a lista viva de clientes e inboxes está na tabela canônica em `infra/CLAUDE.md`.
 
 ## Setup (primeira vez)
 

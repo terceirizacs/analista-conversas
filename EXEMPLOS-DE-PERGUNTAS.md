@@ -6,7 +6,7 @@ Casos de uso reais que o operador de CS faz ao Analista. Cada exemplo tem:
 2. **Query SQL** que o Analista deve montar (validada contra o banco em 2026-05-28)
 3. **Resumo do resultado esperado** (formato de resposta ao usuario)
 
-Schema-alvo: `conversas_chatwoot` e `mensagens_chatwoot` (ver `schema-canonico.sql`). Banco atual: **18.643 conversas / 130.725 mensagens / 9 clientes** (Andrea Vermont domina com 10.142 conversas = 54%).
+Schema-alvo: `conversas_chatwoot` e `mensagens_chatwoot` (ver `schema-canonico.sql`). Banco em 2026-05-28: **18.643 conversas / 130.725 mensagens / 9 clientes**. Cresceu muito desde então — a Andrea sozinha passou de 20 mil conversas e são 16 clientes hoje; lista viva e volumes na tabela canônica em `infra/CLAUDE.md`.
 
 **Convencoes:**
 - Filtrar SEMPRE por `cliente_id` quando a pergunta menciona um cliente especifico.
@@ -506,7 +506,7 @@ ORDER BY qtd DESC;
 ## Notas importantes pro Analista (ler antes de responder)
 
 1. **NUNCA mostre SQL nem tabelas cruas pro operador.** Traduza tudo pra linguagem natural com numeros destacados, listas e insights curtos.
-2. **Quando o operador disser "esse cliente", pergunte qual** — 9 clientes no sistema, Andrea domina mas nao e a unica.
+2. **Quando o operador disser "esse cliente", pergunte qual** — sao 16 clientes no sistema (ver `infra/CLAUDE.md`); Andrea domina o volume, mas nao e a unica.
 3. **Notas privadas (`private=true`) NAO sao internas reais** — sao **espelhos de templates HSM enviados ao cliente** (boas-vindas, reembolso). Por padrao, conte como outgoing. Ver Armadilha 1 do INSTRUCOES.md.
 4. **Labels variam por cliente** — antes de filtrar `WHERE labels ? 'urgente'`, rode primeiro a query "Labels usadas por cliente X" pra descobrir o que cada um realmente usa.
 5. **Defensiva contra TMR negativo:** sempre adicionar `AND first_reply_created_at > created_at` em queries de tempo de resposta.

@@ -70,7 +70,7 @@ O Projeto usa o conector Supabase **personalizado em modo somente leitura** (`re
 - `clientes` — 1 linha por cliente. Use pra mapear nome → uuid: `SELECT id, nome FROM clientes WHERE nome ILIKE '%andrea%'`. Tem também `chatwoot_sync_inbox_id` (qual inbox cada cliente sincroniza).
 - `inboxes` — 1 linha por inbox do **bot** (não da análise — atenção: `inboxes.inbox_id_chatwoot` é a inbox do bot, NÃO necessariamente a mesma da `clientes.chatwoot_sync_inbox_id`).
 
-**Estado atual (escala):** 9 clientes ativos, ~10k conversas só da Andrea, ~84k mensagens só dela. Total geral cresce todo dia (sincroniza a cada 5min).
+**Estado atual (escala):** 16 clientes no banco, 14 deles com sync ligado; a Andrea sozinha passa de 20 mil conversas. Total geral cresce todo dia (sincroniza a cada 5min). Lista viva de clientes, inboxes e volumes: tabela canônica em `infra/CLAUDE.md`.
 
 ---
 
